@@ -1,0 +1,61 @@
+<button onclick="trig('sin')" class="function">sin</button>
+  <button onclick="trig('cos')" class="function">cos</button>
+  <button onclick="trig('tan')" class="function">tan</button>
+  <button onclick="append('(')"> ( </button>
+  <button onclick="append(')')"> ) </button>
+</div>
+
+<script>
+  let display = document.getElementById('display');
+
+  function append(char) {
+    display.value += char;
+  }
+
+  function clearDisplay() {
+    display.value = '';
+  }
+
+  function resetCalculator() {
+    display.value = '';
+  }
+
+  function calculate() {
+    try {
+      display.value = eval(display.value);
+    } catch (e) {
+      display.value = 'Error';
+    }
+  }
+
+  function scientific(func) {
+    try {
+      let val = parseFloat(display.value);
+      switch(func) {
+        case 'sqrt': display.value = Math.sqrt(val); break;
+        case 'log': display.value = Math.log10(val); break;
+        case 'exp': display.value = Math.exp(val); break;
+        case '^2': display.value = Math.pow(val, 2); break;
+      }
+    } catch {
+      display.value = 'Error';
+    }
+  }
+
+  function trig(func) {
+    try {
+      let val = parseFloat(display.value);
+      let rad = val * (Math.PI / 180); // Convert to radians
+      switch(func) {
+        case 'sin': display.value = Math.sin(rad); break;
+        case 'cos': display.value = Math.cos(rad); break;
+        case 'tan': display.value = Math.tan(rad); break;
+      }
+    } catch {
+      display.value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
